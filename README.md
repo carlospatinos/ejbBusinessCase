@@ -1,7 +1,7 @@
 # ejbBusinessCase
 EJB Integration Testing with Arquillian
 
-![BUILD](https://github.com/carlospatinos/ejbBusinessCase/actions/workflows/gradle-test.yml/badge.svg)
+![BUILD](https://github.com/carlospatinos/ejbBusinessCase/actions/workflows/maven-test.yml/badge.svg)
 
 
 # Requirements 
