@@ -11,23 +11,23 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class UserInformationSenderTest {
-	
+public class UserCounterTest {
+
 	@InjectMocks
-	private UserInformationSender sender;
-	
-	@Spy 
-	private SenderProvider provider;
+	private UserCounter sender;
+
+	@Spy
+	private CounterService provider;
 
 	@BeforeEach
-    void setUp() {
-		sender = new UserInformationSender(provider);
-    }
-	
+	void setUp() {
+		sender = new UserCounter(provider);
+	}
+
 	@Test
-	public void testSend() throws Exception {
+	public void testAdd() throws Exception {
 		String message = "Test Message";
-		sender.send(message);
-		verify(provider).send(message);
+		sender.add(message);
+		verify(provider).add(message);
 	}
 }

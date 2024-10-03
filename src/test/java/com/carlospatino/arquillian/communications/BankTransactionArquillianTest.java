@@ -12,32 +12,29 @@ import org.junit.runner.RunWith;
 
 import com.carlospatino.arquillian.ejb.BankAccount;
 import com.carlospatino.arquillian.ejb.BankTransaction;
+import com.carlospatino.arquillian.ejb.BankTransactionLocal;
 
 import javax.annotation.Resource;
-import javax.ejb.EJB;
 import javax.inject.Inject;
 
 @RunWith(Arquillian.class)
-public class UserInformationSenderArquillianTest {
-
+public class BankTransactionArquillianTest {
+	
 	@Inject
-	private UserCounter counter;
+	private BankTransactionLocal transaction;
 
 	@Deployment
 	public static JavaArchive createDeployment() {
-		JavaArchive jar = ShrinkWrap.create(JavaArchive.class).addClasses(CounterService.class,
-				UserCounter.class, StatelessCounter.class)
+		
+		JavaArchive jar = ShrinkWrap.create(JavaArchive.class).addClasses(BankTransaction.class,
+				BankAccount.class)
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 		System.out.println(jar.toString(true));
 		return jar;
-		
 	}
 
 	@Test
-//	@Ignore
-	public void should_create_message() {
-		counter.add("User1");
-		counter.add("User2");
-		Assert.assertEquals(2, counter.getTotal());	
+	public void should_deduct_and_increase() {
+		Assert.assertEquals(true, transaction.transfer());
 	}
 }
