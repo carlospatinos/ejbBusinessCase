@@ -1,15 +1,18 @@
 package com.carlospatino.arquillian.communications;
 
+import javax.inject.Inject;
+
 public class UserInformationSender implements InformationSender {
 
-	private final ConsoleSenderProvider provider;
+	private final SenderProvider provider;
 	private static final String GREETING = "Hola "; 
 	
 	public UserInformationSender() {
 		provider = new ConsoleSenderProvider();
 	}
 	
-	public UserInformationSender(final ConsoleSenderProvider prov) {
+	@Inject
+	public UserInformationSender(final SenderProvider prov) {
 		this.provider = prov;
 	}
 	

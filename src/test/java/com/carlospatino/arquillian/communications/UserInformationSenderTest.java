@@ -17,7 +17,7 @@ public class UserInformationSenderTest {
 	private UserInformationSender sender;
 	
 	@Spy 
-	private ConsoleSenderProvider provider;
+	private SenderProvider provider;
 
 	@BeforeEach
     void setUp() {
