@@ -26,15 +26,5 @@ jobs:
         distribution: 'temurin'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
-    - run: | 
-        export JAVA_TOOL_OPTIONS="-Djdk.util.zip.disableZip64ExtraFieldValidation=true \
-        -Djdk.attach.allowAttachSelf=true \
-        --add-opens=java.base/java.io=ALL-UNNAMED \
-        --add-opens=java.base/sun.net.www.protocol.jar=ALL-UNNAMED \
-        --add-opens=java.base/java.net=ALL-UNNAMED \
-        --add-opens=java.naming/javax.naming.spi=ALL-UNNAMED \
-        --add-opens=java.base/java.lang=ALL-UNNAMED"
-    - run: echo $JAVA_TOOL_OPTIONS
-    - run: echo "Printing jvm options"
     - name: Run the Maven verify phase
       run: export JAVA_TOOL_OPTIONS="-Djdk.util.zip.disableZip64ExtraFieldValidation=true -Djdk.attach.allowAttachSelf=true --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/sun.net.www.protocol.jar=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.naming/javax.naming.spi=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED" && mvn --batch-mode --update-snapshots verify
